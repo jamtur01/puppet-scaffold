@@ -1,0 +1,3 @@
+<%= module_name %>
+
+This is the <%= module_name %> module.
