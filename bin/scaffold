@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'templater'
+require File.dirname(__FILE__)+'/../lib/scaffold.rb'
+
+Scaffold::Generator.run_cli(Dir.pwd, 'scaffold', "0.1", ARGV)
