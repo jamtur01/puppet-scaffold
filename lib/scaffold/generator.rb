@@ -46,8 +46,48 @@ module Scaffold
         f.source = "#{source_root}/manifests/init.pp"
         f.destination = "#{module_name}/manifests/init.pp"
       end
+      template :testinit_file do |f| 
+        f.source = "#{source_root}/tests/init.pp"
+        f.destination = "#{module_name}/tests/init.pp"
+      end 
       
     end
+
+    class ClassGenerator < Templater::Generator
+      desc <<-DESC
+        Create a Puppet class.
+      DESC
+    
+      first_argument :module_name, :required => true, :desc => "The module that contains the class"
+      second_argument :class_name, :required => true, :desc => "Your class name."
+    
+      def self.source_root
+        File.expand_path(File.join(Dir.pwd, 'templates/module'))
+      end 
+   
+      template :class_file do |f| 
+        f.source = "#{source_root}/manifests/class.pp"
+        f.destination = "#{module_name}/manifests/#{class_name}.pp"
+      end 
+    end 
+
+    class DefineGenerator < Templater::Generator
+      desc <<-DESC
+        Create a Puppet definition.
+      DESC
+    
+      first_argument :module_name, :required => true, :desc => "The module that contains the definition"
+      second_argument :define_name, :required => true, :desc => "Your definition name."
+    
+      def self.source_root
+        File.expand_path(File.join(Dir.pwd, 'templates/module'))
+      end 
+   
+      template :class_file do |f| 
+        f.source = "#{source_root}/manifests/define.pp"
+        f.destination = "#{module_name}/manifests/#{define_name}.pp"
+      end 
+    end 
 
     class FunctionGenerator < Templater::Generator
       desc <<-DESC
@@ -133,6 +173,8 @@ module Scaffold
     end
  
     add :module, ModuleGenerator
+    add :class, ClassGenerator
+    add :define, DefineGenerator
     add :function, FunctionGenerator
     add :type, TypeGenerator
     add :puppet, PuppetGenerator

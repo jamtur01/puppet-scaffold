@@ -11,6 +11,8 @@ A simle templating scaffolding system for Puppet
 Creates:
 
 * Modules - using the first module directory in the modulepath
+* Class in a module
+* Definition in a module
 * Functions - in a specific module
 * Puppet configuration - creates a base configuration in Puppet's confdir
 
@@ -18,6 +20,12 @@ Creates:
 
 Create a module:
   $ scaffold module module_name
+
+Create a clas:
+  $ scaffold class module_name class_name
+
+Create a definition:
+  $ scaffold define module_name define_name
 
 Create a function:
   $ scaffold function module_name function_name function_type

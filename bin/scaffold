@@ -12,7 +12,7 @@ case ARGV[0]
     dir = Puppet[:confdir]
     puts "#{dir}"
     Scaffold::Generator.run_cli(dir, 'scaffold', Scaffold::VERSION, ARGV)
-  when 'module'
+  when 'module', 'class', 'define'
     dir = Puppet[:modulepath].split(':')
     Scaffold::Generator.run_cli(dir[0], 'scaffold', Scaffold::VERSION, ARGV)
   when 'function', 'type'
