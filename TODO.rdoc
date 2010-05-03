@@ -1,0 +1,4 @@
+= scaffold TODO
+
+* Create generators for:
+ - definitions
