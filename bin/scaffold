@@ -1,7 +1,20 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
+require 'puppet'
 require 'templater'
 require File.dirname(__FILE__)+'/../lib/scaffold.rb'
 
-Scaffold::Generator.run_cli(Dir.pwd, 'scaffold', "0.1", ARGV)
+Puppet.parse_config
+
+case ARGV[0]
+  when 'puppet'
+    dir = Puppet[:confdir]
+    Scaffold::Generator.run_cli(dir, 'scaffold', Scaffold::VERSION, ARGV)
+  when 'module'
+    dir = Puppet[:modulepath].split(':')
+    Scaffold::Generator.run_cli(dir[0], 'scaffold', Scaffold::VERSION, ARGV)
+  when 'function'
+    dir = Puppet[:modulepath].split(':')
+    Scaffold::Generator.run_cli(dir[0], 'scaffold', Scaffold::VERSION, ARGV)
+end

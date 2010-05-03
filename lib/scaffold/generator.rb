@@ -84,8 +84,6 @@ module Scaffold
         File.expand_path(File.join(Dir.pwd, 'templates/puppet')) 
       end 
   
-      puts "#{source_root}"
- 
       # Create all subsdirectories
       empty_directory :manifests_directory do |d| 
         d.destination = "#{confdir_name}/manifests"
