@@ -4,7 +4,7 @@
 
 == DESCRIPTION:
 
-A simle templating scaffolding system for Puppet
+A simple templating scaffolding system for Puppet
 
 == FEATURES/PROBLEMS:
 
