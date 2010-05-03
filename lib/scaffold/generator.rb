@@ -56,12 +56,12 @@ module Scaffold
     
       first_argument :module_name, :required => true, :desc => "The module that contains the function"
       second_argument :function_name, :required => true, :desc => "Your function name."
-      third_argument :rvalue, :required => false, :desc => "Is it an rvalue function?"
+      third_argument :type, :required => :true, :default => "statement", :desc => "The type of function."
     
       def self.source_root
         File.expand_path(File.join(Dir.pwd, 'templates/function'))
       end 
-    
+   
       # Create all subsdirectories
       empty_directory :lib_directory do |d| 
         d.destination = "#{module_name}/lib/puppet/parser/functions"
