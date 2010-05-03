@@ -3,4 +3,6 @@
 * Create generators for:
  - Check for presence of modules before creation
  - Tests
+- add nodes by updating import in site.pp and adding node.pp
+- add type provider to readme.
 
