@@ -15,7 +15,7 @@ case ARGV[0]
   when 'module'
     dir = Puppet[:modulepath].split(':')
     Scaffold::Generator.run_cli(dir[0], 'scaffold', Scaffold::VERSION, ARGV)
-  when 'function'
+  when 'function', 'type'
     dir = Puppet[:modulepath].split(':')
     Scaffold::Generator.run_cli(dir[0], 'scaffold', Scaffold::VERSION, ARGV)
 end

@@ -73,6 +73,38 @@ module Scaffold
       end
     end
 
+    class TypeGenerator < Templater::Generator
+      desc <<-DESC
+        Create a Puppet type and provider.
+      DESC
+    
+      first_argument :module_name, :required => true, :desc => "The module that contains the type"
+      second_argument :type_name, :required => true, :desc => "Your type name."
+    
+      def self.source_root
+        File.expand_path(File.join(Dir.pwd, 'templates/type'))
+      end 
+   
+      # Create all subsdirectories
+      empty_directory :type_directory do |d| 
+        d.destination = "#{module_name}/lib/puppet/type"
+      end 
+      empty_directory :provider_directory do |d|
+        d.destination = "#{module_name}/lib/puppet/provider/#{type_name}"
+      end
+
+    
+      template :type_file do |f| 
+        f.source = "#{source_root}/type.rb"
+        f.destination = "#{module_name}/lib/puppet/type/#{type_name}.rb"
+      end
+      template :provider_file do |f|    
+        f.source = "#{source_root}/provider.rb"
+        f.destination = "#{module_name}/lib/puppet/provider/#{type_name}/#{type_name}.rb"
+      end
+ 
+    end 
+
     class PuppetGenerator < Templater::Generator
       desc <<-DESC
         Generate a basic Puppet configuration - specify the location of your Puppet configuration directory, for example /etc/puppet.
@@ -102,6 +134,7 @@ module Scaffold
  
     add :module, ModuleGenerator
     add :function, FunctionGenerator
+    add :type, TypeGenerator
     add :puppet, PuppetGenerator
   end    
 end
