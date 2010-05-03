@@ -78,27 +78,25 @@ module Scaffold
         Generate a basic Puppet configuration - specify the location of your Puppet configuration directory, for example /etc/puppet.
       DESC
     
-      first_argument :confdir_name, :required => true, :desc => "The location of configuration directory."
-    
       def self.source_root
         File.expand_path(File.join(Dir.pwd, 'templates/puppet')) 
       end 
   
       # Create all subsdirectories
       empty_directory :manifests_directory do |d| 
-        d.destination = "#{confdir_name}/manifests"
+        d.destination = "manifests"
       end 
       empty_directory :files_directory do |d| 
-        d.destination = "#{confdir_name}/files"
+        d.destination = "files"
       end 
     
       template :site_file do |f| 
         f.source = "#{source_root}/manifests/site.pp"
-        f.destination = "#{confdir_name}/manifests/site.pp"
+        f.destination = "manifests/site.pp"
       end
       file :fileserver_file do |f|
         f.source = "#{source_root}/fileserver.conf"
-        f.destination = "#{confdir_name}/fileserver.conf"
+        f.destination = "fileserver.conf"
       end
     end
  

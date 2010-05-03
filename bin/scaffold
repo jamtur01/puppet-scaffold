@@ -10,6 +10,7 @@ Puppet.parse_config
 case ARGV[0]
   when 'puppet'
     dir = Puppet[:confdir]
+    puts "#{dir}"
     Scaffold::Generator.run_cli(dir, 'scaffold', Scaffold::VERSION, ARGV)
   when 'module'
     dir = Puppet[:modulepath].split(':')
