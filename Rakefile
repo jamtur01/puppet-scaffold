@@ -1,6 +1,15 @@
 require 'rubygems'
+require 'newgem/tasks'
 require 'fileutils'
+require 'templater'
+require File.dirname(__FILE__)+'/lib/scaffold.rb'
 
-# TODO - want other tests/tasks run by default? Add them to the list
-# remove_task :default
-# task :default => [:spec, :features]
+desc "Build gem"
+task :build do
+  system "gem build .gemspec"
+end
+
+desc "Release gem to Gemcutter"
+task :release => :build do
+  system "gem push scaffold"
+end
