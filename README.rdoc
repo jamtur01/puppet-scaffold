@@ -21,7 +21,10 @@ Creates:
 Create a module:
   $ scaffold module module_name
 
-Create a clas:
+Create a node:
+  $ scaffold node node_name
+
+Create a class:
   $ scaffold class module_name class_name
 
 Create a definition:
@@ -29,6 +32,9 @@ Create a definition:
 
 Create a function:
   $ scaffold function module_name function_name function_type
+
+Create a type/provider:
+  $ scaffold type module_name type_name
 
 Create Puppet configuration:
   $ scaffold puppet

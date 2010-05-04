@@ -6,5 +6,5 @@ File {
   ignore => ['.svn', '.git', 'CVS', '*~' ],  
 }
 
-import "nodes"
+import "nodes/*.pp"
 

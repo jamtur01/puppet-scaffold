@@ -8,7 +8,7 @@ require File.dirname(__FILE__)+'/../lib/scaffold.rb'
 Puppet.parse_config
 
 case ARGV[0]
-  when 'puppet'
+  when 'puppet', 'node'
     dir = Puppet[:confdir]
     puts "#{dir}"
     Scaffold::Generator.run_cli(dir, 'scaffold', Scaffold::VERSION, ARGV)

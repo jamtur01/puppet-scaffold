@@ -53,6 +53,29 @@ module Scaffold
       
     end
 
+    class NodeGenerator < Templater::Generator
+      desc <<-DESC
+        Generate a basic Puppet node
+      DESC
+
+      first_argument :node_name, :required => true, :desc => "Your node name."
+    
+      def self.source_root
+        File.expand_path(File.join(Dir.pwd, 'templates/puppet')) 
+      end 
+  
+      # Create all subsdirectories
+      empty_directory :manifests_directory do |d| 
+        d.destination = "manifests/nodes/"
+      end 
+      
+      template :node_file do |f|
+        f.source = "#{source_root}/manifests/nodes/node.pp"
+        f.destination = "manifests/nodes/#{node_name}.pp"
+      end
+ 
+    end 
+
     class ClassGenerator < Templater::Generator
       desc <<-DESC
         Create a Puppet class.
@@ -156,7 +179,7 @@ module Scaffold
   
       # Create all subsdirectories
       empty_directory :manifests_directory do |d| 
-        d.destination = "manifests"
+        d.destination = "manifests/nodes"
       end 
       empty_directory :files_directory do |d| 
         d.destination = "files"
@@ -173,6 +196,7 @@ module Scaffold
     end
  
     add :module, ModuleGenerator
+    add :node, NodeGenerator
     add :class, ClassGenerator
     add :define, DefineGenerator
     add :function, FunctionGenerator
