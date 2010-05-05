@@ -19,17 +19,11 @@ module Scaffold
       end
       
       # Create all subsdirectories
-      empty_directory :manifests_directory do |d|
-        d.destination = "#{module_name}/manifests"
-      end
       empty_directory :files_directory do |d|
         d.destination = "#{module_name}/files"
       end
       empty_directory :templates_directory do |d|
         d.destination = "#{module_name}/templates"
-      end
-      empty_directory :tests_directory do |d|
-        d.destination = "#{module_name}/tests"
       end
       empty_directory :lib_directory do |d|
         d.destination = "#{module_name}/lib/puppet/parser/functions"
@@ -37,7 +31,11 @@ module Scaffold
       empty_directory :libfacter_directory do |d|
         d.destination = "#{module_name}/lib/facter"
       end
-           
+          
+      file :metadata_file do |f|
+        f.source = "#{source_root}/metadata.json"
+        f.destination = "#{module_name}/metadata.json" 
+      end
       template :readme_file do |f|
         f.source = "#{source_root}/README"
         f.destination = "#{module_name}/README"
