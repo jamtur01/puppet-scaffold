@@ -11,9 +11,11 @@ A simple templating scaffolding system for Puppet
 Creates:
 
 * Modules - using the first module directory in the modulepath
+* Nodes - creates them in Puppet's confdir and assumed you've used Scaffold's config template
 * Class in a module
 * Definition in a module
 * Functions - in a specific module
+* Types & Providers - in a specific module
 * Puppet configuration - creates a base configuration in Puppet's confdir
 
 == SYNOPSIS:
