@@ -48,7 +48,7 @@ Create Puppet configuration:
 
 == INSTALL:
 
-  $ gem install templater
+  $ gem install scaffold
 
 == LICENSE:
 
