@@ -15,7 +15,7 @@ module Scaffold
       first_argument :module_name, :required => true, :desc => "Your module name."
       
       def self.source_root
-        File.expand_path(File.join(Dir.pwd, 'templates/module'))
+        File.join(File.dirname(__FILE__), 'templates/module')
       end
       
       # Create all subsdirectories
@@ -59,7 +59,7 @@ module Scaffold
       first_argument :node_name, :required => true, :desc => "Your node name."
     
       def self.source_root
-        File.expand_path(File.join(Dir.pwd, 'templates/puppet')) 
+        File.join(File.dirname(__FILE__), 'templates/puppet')
       end 
   
       # Create all subsdirectories
@@ -83,7 +83,7 @@ module Scaffold
       second_argument :class_name, :required => true, :desc => "Your class name."
     
       def self.source_root
-        File.expand_path(File.join(Dir.pwd, 'templates/module'))
+        File.join(File.dirname(__FILE__), 'templates/module')
       end 
    
       template :class_file do |f| 
@@ -101,7 +101,7 @@ module Scaffold
       second_argument :define_name, :required => true, :desc => "Your definition name."
     
       def self.source_root
-        File.expand_path(File.join(Dir.pwd, 'templates/module'))
+        File.join(File.dirname(__FILE__), 'templates/module')
       end 
    
       template :class_file do |f| 
@@ -120,7 +120,7 @@ module Scaffold
       third_argument :type, :required => :true, :default => "statement", :desc => "The type of function."
     
       def self.source_root
-        File.expand_path(File.join(Dir.pwd, 'templates/function'))
+        File.join(File.dirname(__FILE__), 'templates/function')
       end 
    
       # Create all subsdirectories
@@ -143,7 +143,7 @@ module Scaffold
       second_argument :type_name, :required => true, :desc => "Your type name."
     
       def self.source_root
-        File.expand_path(File.join(Dir.pwd, 'templates/type'))
+        File.join(File.dirname(__FILE__), 'templates/type')
       end 
    
       # Create all subsdirectories
@@ -172,7 +172,7 @@ module Scaffold
       DESC
     
       def self.source_root
-        File.expand_path(File.join(Dir.pwd, 'templates/puppet')) 
+        File.join(File.dirname(__FILE__), 'templates/puppet')
       end 
   
       # Create all subsdirectories
