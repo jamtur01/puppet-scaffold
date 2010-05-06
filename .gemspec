@@ -17,7 +17,6 @@ Gem::Specification.new do |spec|
     spec.files = GEM_FILES.to_a
     spec.executables = 'scaffold'
     spec.version = Scaffold::VERSION
-    spec.add_dependency('puppet', '>= 0.24.8')
     spec.add_dependency('templater', '>= 0.5.0')
     spec.summary = 'Scaffold is a templating tool for Puppet'
     spec.description = 'Scaffold allows you to create basic Puppet configuration, modules, nodes, classes, functions and types.'

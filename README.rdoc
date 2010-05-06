@@ -43,8 +43,8 @@ Create Puppet configuration:
 
 == REQUIREMENTS:
 
-* templater
-* Puppet
+* templater (installed as a dependency)
+* Puppet (not installed with scaffold)
 
 == INSTALL:
 
