@@ -1,6 +1,4 @@
 = scaffold TODO
 
-* Create generators for:
- - Check for presence of modules before creation
- - Tests
-
+- Check for presence of modules before creation
+- Tests

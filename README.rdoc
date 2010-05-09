@@ -20,26 +20,32 @@ Creates:
 
 == SYNOPSIS:
 
+Use the --template option to specify the type of template you want to create.
+
 Create a module:
-  $ scaffold module module_name
+  $ scaffold --template=module module
 
 Create a node:
-  $ scaffold node node_name
+  $ scaffold --template=node node
 
 Create a class:
-  $ scaffold class module_name class_name
+  $ scaffold --template=class module class
 
 Create a definition:
-  $ scaffold define module_name define_name
+  $ scaffold --template=define module define
 
 Create a function:
-  $ scaffold function module_name function_name function_type
+  $ scaffold --template=function module function type
 
 Create a type/provider:
-  $ scaffold type module_name type_name
+  $ scaffold --template=type module type
 
 Create Puppet configuration:
-  $ scaffold puppet
+  $ scaffold --template=puppet
+
+Puppet configuration is specified in the directory specified in the Puppet confdir variable but you can override this with the --configdir option.
+
+  $ scaffold --template=puppet --configdir=/opt/puppet
 
 == REQUIREMENTS:
 
@@ -52,7 +58,7 @@ Create Puppet configuration:
 
 == LICENSE:
 
-(The MIT License)
+The MIT License
 
 Copyright (c) 2010 James Turnbull
 

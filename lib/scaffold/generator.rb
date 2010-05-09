@@ -9,13 +9,13 @@ module Scaffold
     ##
     class ModuleGenerator < Templater::Generator
       desc <<-DESC
-        Create an empty Puppet module
+        Create an empty Puppet module. You must specify the name of the module.
       DESC
       
       first_argument :module_name, :required => true, :desc => "Your module name."
       
       def self.source_root
-        File.join(File.dirname(__FILE__), 'templates/module')
+          File.join(File.dirname(__FILE__), 'templates/module')
       end
       
       # Create all subsdirectories
@@ -53,7 +53,7 @@ module Scaffold
 
     class NodeGenerator < Templater::Generator
       desc <<-DESC
-        Generate a basic Puppet node
+        Generate a basic Puppet node.  You must specify the name of the node.
       DESC
 
       first_argument :node_name, :required => true, :desc => "Your node name."
@@ -76,7 +76,7 @@ module Scaffold
 
     class ClassGenerator < Templater::Generator
       desc <<-DESC
-        Create a Puppet class.
+        Create a Puppet class. You must specify the name of the module to create the class in and the name of the class.
       DESC
     
       first_argument :module_name, :required => true, :desc => "The module that contains the class"
@@ -94,7 +94,7 @@ module Scaffold
 
     class DefineGenerator < Templater::Generator
       desc <<-DESC
-        Create a Puppet definition.
+        Create a Puppet definition. You must specify the name of the module to create the definition in and the name of the definition.
       DESC
     
       first_argument :module_name, :required => true, :desc => "The module that contains the definition"
@@ -112,7 +112,7 @@ module Scaffold
 
     class FunctionGenerator < Templater::Generator
       desc <<-DESC
-        Create a Puppet function.
+        Create a Puppet function. Specify the name of the module, the name of the function and the type of the function, either statement or rvalue.  Generator defaults to statement.
       DESC
     
       first_argument :module_name, :required => true, :desc => "The module that contains the function"
@@ -136,7 +136,7 @@ module Scaffold
 
     class TypeGenerator < Templater::Generator
       desc <<-DESC
-        Create a Puppet type and provider.
+        Create a Puppet type and provider. You must specify the module to create the type and provider in and the name of the type to be created.
       DESC
     
       first_argument :module_name, :required => true, :desc => "The module that contains the type"
@@ -168,7 +168,7 @@ module Scaffold
 
     class PuppetGenerator < Templater::Generator
       desc <<-DESC
-        Generate a basic Puppet configuration - specify the location of your Puppet configuration directory, for example /etc/puppet.
+        Generate a basic Puppet configuration.  
       DESC
     
       def self.source_root

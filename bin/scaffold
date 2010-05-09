@@ -1,21 +1,80 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require 'puppet'
-require 'templater'
-require File.dirname(__FILE__)+'/../lib/scaffold.rb'
+require 'optparse'
+require 'scaffold'
 
-Puppet.parse_config
+TEMPLATES = %w[puppet module node class define function type]
 
-case ARGV[0]
-  when 'puppet', 'node'
-    dir = Puppet[:confdir]
-    puts "#{dir}"
-    Scaffold::Generator.run_cli(dir, 'scaffold', Scaffold::VERSION, ARGV)
-  when 'module', 'class', 'define'
-    dir = Puppet[:modulepath].split(':')
-    Scaffold::Generator.run_cli(dir[0], 'scaffold', Scaffold::VERSION, ARGV)
-  when 'function', 'type'
-    dir = Puppet[:modulepath].split(':')
-    Scaffold::Generator.run_cli(dir[0], 'scaffold', Scaffold::VERSION, ARGV)
+options = {}
+
+optparse = OptionParser.new do |opts|
+  # Set a banner, displayed at the top
+  # of the help screen.
+  opts.banner = 'Usage: scaffold [options] --template="template" options ...'
+
+  opts.separator ''
+  opts.separator 'Configuration options:'
+ 
+  options[:configfile] = nil
+  opts.on( '-f', '--configfile=FILE', 'Use file as configuration file') do |file|
+    options[:configfile] = file
+  end
+
+  options[:configdir] = nil 
+  opts.on( '-c', '--configdir=DIRECTORY', 'Specify the location of your Puppet configuration directory') do |confdir|
+    options[:configdir] = confdir
+  end 
+
+  options[:templatedir] = nil
+  opts.on( '--templatedir=DIRECTORY', 'Use directory as template loation') do |templatedir|
+    options[:templatedir] = templatedir
+  end
+
+  options[:template] = nil
+  opts.on( '--template=TEMPLATE', TEMPLATES, 'Template to create') do |template|
+    options[:template] = template
+  end
+
+  opts.separator ""
+  opts.separator "Common options:"
+ 
+  opts.on_tail('-v', '--version', 'Show version') do
+    puts Scaffold::VERSION
+    exit
+  end
+
+  opts.on_tail('-h', '--help', 'Display this screen' ) do
+    puts opts
+    exit
+  end 
 end
+
+begin
+  optparse.parse!
+  mandatory = [:template]
+  missing = mandatory.select{ |param| options[param].nil? }
+  if not missing.empty?
+    puts "Missing options: #{missing.join(', ')}"
+    puts optparse
+    exit
+  end
+rescue OptionParser::InvalidArgument, OptionParser::InvalidOption, OptionParser::MissingArgument
+  puts $!.to_s
+  puts optparse
+  exit
+end
+
+if options[:template] == 'puppet'
+  if options[:configdir] 
+    dir = options[:configdir]
+  else
+    dir = Puppet[:confdir]
+  end
+else
+  dir = Puppet[:modulepath].split(':')
+end
+
+ARGV.unshift(options[:template])
+
+Scaffold::Generator.run_cli dir.to_s, 'scaffold', Scaffold::VERSION, ARGV
