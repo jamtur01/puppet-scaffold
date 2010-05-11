@@ -4,6 +4,7 @@ require 'rubygems'
 require 'optparse'
 require 'scaffold'
 
+# List the available templates
 TEMPLATES = %w[puppet module node class define function type]
 
 options = {}
@@ -16,11 +17,6 @@ optparse = OptionParser.new do |opts|
   opts.separator ''
   opts.separator 'Configuration options:'
  
-  options[:configfile] = nil
-  opts.on( '-f', '--configfile=FILE', 'Use file as configuration file') do |file|
-    options[:configfile] = file
-  end
-
   options[:configdir] = nil 
   opts.on( '-c', '--configdir=DIRECTORY', 'Specify the location of your Puppet configuration directory') do |confdir|
     options[:configdir] = confdir
@@ -50,6 +46,7 @@ optparse = OptionParser.new do |opts|
   end 
 end
 
+# Process the options and fail on invalid options or if template is not specified
 begin
   optparse.parse!
   mandatory = [:template]
@@ -65,6 +62,7 @@ rescue OptionParser::InvalidArgument, OptionParser::InvalidOption, OptionParser:
   exit
 end
 
+# Specify destination directory according to the template specified
 if options[:template] == 'puppet'
   if options[:configdir] 
     dir = options[:configdir]
@@ -75,6 +73,12 @@ else
   dir = Puppet[:modulepath].split(':')
 end
 
+# Add generator name to ARGV
 ARGV.unshift(options[:template])
 
-Scaffold::Generator.run_cli dir.to_s, 'scaffold', Scaffold::VERSION, ARGV
+# If it exists use the template directory
+@templatedir = options[:templatedir].to_s if options[:templatedir]
+
+
+# Run the generator
+#Scaffold::Generator.run_cli dir.to_s, 'scaffold', Scaffold::VERSION, ARGV

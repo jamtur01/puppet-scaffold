@@ -4,6 +4,7 @@ Puppet Scaffold
 0.0.3
 -----
 
+ - Removed extraneous and non-functional config file code
  - Added --template command line option
  - Added --configdir command line option
  - Added optparse

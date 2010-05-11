@@ -1,7 +1,7 @@
 module Scaffold
   module Generator
     extend Templater::Manifold
-    
+
     desc <<-DESC
       Create template Puppet objects and configurations.
     DESC
