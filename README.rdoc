@@ -43,7 +43,7 @@ Create a type/provider:
 Create Puppet configuration:
   $ scaffold --template=puppet
 
-Puppet configuration is specified in the directory specified in the Puppet confdir variable but you can override this with the --configdir option.
+Puppet configuration is created in the directory specified in the Puppet confdir variable but you can override this with the --configdir option.
 
   $ scaffold --template=puppet --configdir=/opt/puppet
 
