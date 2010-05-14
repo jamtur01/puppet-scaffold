@@ -22,11 +22,6 @@ optparse = OptionParser.new do |opts|
     options[:configdir] = confdir
   end 
 
-  options[:templatedir] = nil
-  opts.on( '--templatedir=DIRECTORY', 'Use directory as template loation') do |templatedir|
-    options[:templatedir] = templatedir
-  end
-
   options[:template] = nil
   opts.on( '--template=TEMPLATE', TEMPLATES, 'Template to create') do |template|
     options[:template] = template
@@ -76,9 +71,5 @@ end
 # Add generator name to ARGV
 ARGV.unshift(options[:template])
 
-# If it exists use the template directory
-@templatedir = options[:templatedir].to_s if options[:templatedir]
-
-
 # Run the generator
-#Scaffold::Generator.run_cli dir.to_s, 'scaffold', Scaffold::VERSION, ARGV
+Scaffold::Generator.run_cli dir.to_s, 'scaffold', Scaffold::VERSION, ARGV

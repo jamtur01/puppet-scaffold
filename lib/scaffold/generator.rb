@@ -15,7 +15,7 @@ module Scaffold
       first_argument :module_name, :required => true, :desc => "Your module name."
       
       def self.source_root
-          File.join(File.dirname(__FILE__), 'templates/module')
+            File.join(File.dirname(__FILE__), 'templates/module')
       end
       
       # Create all subsdirectories
