@@ -27,6 +27,11 @@ optparse = OptionParser.new do |opts|
     options[:template] = template
   end
 
+  options[:modulepath] = nil
+  opts.on( '-m', '--modulepath=DIRECTORY', 'Location to store the files created') do |modulepath|
+    options[:modulepath] = File.expand_path(modulepath)
+  end
+
   opts.separator ""
   opts.separator "Common options:"
  
@@ -65,7 +70,11 @@ if options[:template] == 'puppet'
     dir = Puppet[:confdir]
   end
 else
-  dir = Puppet[:modulepath].split(':')
+  if options[:modulepath] 
+      dir = options[:modulepath]
+  else
+      dir = Puppet[:modulepath].split(':')
+  end
 end
 
 # Add generator name to ARGV
