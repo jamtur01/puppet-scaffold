@@ -1,4 +1,6 @@
-= scaffold
+= This tool is deprecated - use the puppet-module tool or in 2.8.0 and later this functionality is merged into the Puppet core.
+
+== scaffold
 
 * http://github.com/jamtur01/puppet-scaffold
 
